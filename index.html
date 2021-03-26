@@ -32,10 +32,10 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#klasifikasi">Classification</a>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">Tentang</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#klasifikasi">Klasifikasi</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Kontak</a></li>
                 </ul>
             </div>
         </div>
@@ -44,9 +44,9 @@
     <header class="masthead">
         <div class="container d-flex h-100 align-items-center">
             <div class="mx-auto text-center">
-                <h1 class="mx-auto my-0 text-uppercase">Meat</h1>
-                <h2 class="text-white-50 mx-auto mt-2 mb-5">Get to know your meat type now.</h2>
-                <a class="btn btn-primary js-scroll-trigger" href="#klasifikasi">Get Started</a>
+                <h1 class="mx-auto my-0 text-uppercase">Daging</h1>
+                <h2 class="text-white-50 mx-auto mt-2 mb-5">Cari tahu apa jenis dari dagingmu sekarang.</h2>
+                <a class="btn btn-primary js-scroll-trigger" href="#klasifikasi">Mulai</a>
             </div>
         </div>
     </header>
@@ -57,7 +57,9 @@
                 <div class="col-lg-8 mx-auto">
                     <h2 class="text-white mb-4">IWAK</h2>
                     <p class="text-white-50">
-                        IWAK is a free website where users can use it to identify types of meat.
+                        Iwak merupakan sebuah website yang membantu pengguna untuk mengidentifikasi jenis
+                        dari daging kambing dan oplosan. Dengan menggunakan teknologi machine learning,
+                        pengguna bisa membedakan antara kedua jenis dari daging tersebut.
                     </p>
                 </div>
             </div>
@@ -66,6 +68,9 @@
     <!-- Projects-->
     <section class="projects-section bg-light" id="klasifikasi">
         <div class="container">
+            <div class="klasifikasi">
+                <h2>Klasifikasi</h2>
+            </div>
             <!-- Featured Project Row-->
             <div class="row align-items-center no-gutters mb-4 mb-lg-5">
                 <!--<div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="assets/img/bg-masthead.jpg" alt="" /></div>
@@ -90,11 +95,12 @@
                         </div>
                     </div>
 
-                    <button class="btn btn-primary" id="upload">Process</button>
+                    <button class="btn btn-primary" id="upload">Proses</button>
                 </div>
                 <div class="col-xl-4 col-lg-5">
                     <div class="featured-text text-center text-lg-left">
-                        <h4>Result : <span class="hasil"></span></h4>
+                        <h4>Hasil : <span class="hasil"></span></h4>
+                        <h5>Presentase : <span class="presentase"></span></h5>
                         <!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p> -->
                     </div>
                 </div>
@@ -158,7 +164,7 @@
                     <div class="card py-4 h-100">
                         <div class="card-body text-center">
                             <i class="fas fa-map-marked-alt text-primary mb-2"></i>
-                            <h4 class="text-uppercase m-0">Address</h4>
+                            <h4 class="text-uppercase m-0">Alamat</h4>
                             <hr class="my-4" />
                             <div class="small text-black-50">Irfan Efendy Rakit Street, Gelang, Banjarnegara, Central
                                 Java</div>
@@ -179,7 +185,7 @@
                     <div class="card py-4 h-100">
                         <div class="card-body text-center">
                             <i class="fas fa-mobile-alt text-primary mb-2"></i>
-                            <h4 class="text-uppercase m-0">Phone</h4>
+                            <h4 class="text-uppercase m-0">Telepon</h4>
                             <hr class="my-4" />
                             <div class="small text-black-50">(+62) 82137591360</div>
                         </div>
@@ -237,6 +243,7 @@
             var form_data = new FormData();
             form_data.append('file', file_data);
             $('.hasil').html("")
+            $('.presentase').html("")
             $.ajax({
                 url: 'https://knn-python.herokuapp.com/proses',
                 dataType: 'json',
@@ -247,6 +254,7 @@
                 type: 'post',
                 success: function (res) {
                     $('.hasil').html(res.result)
+                    $('.presentase').html(res.presentase)
                 }
             });
         });
